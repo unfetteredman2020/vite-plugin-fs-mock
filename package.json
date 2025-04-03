@@ -1,0 +1,36 @@
+{
+  "name": "vite-mock-plugin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/counter.umd.cjs",
+  "module": "./dist/counter.js",
+  "types": "./index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./dist/counter.js",
+    "require": "./dist/counter.umd.cjs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "server": "tsx watch --include ./src server.ts  ",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "koa": "^2.16.0",
+    "tsx": "^4.19.3",
+    "typescript": "~5.7.3",
+    "vite": "^6.1.1",
+    "vitest": "^3.1.1"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "chokidar": "3.6.0",
+    "fast-glob": "^3.3.3"
+  }
+}
