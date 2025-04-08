@@ -1,5 +1,7 @@
 # vite-plugin-fs-mock
 
+> vite plugin for mock file, support `.json` and `.js` `.ts` file .
+
 ## install
 
 ```bash
