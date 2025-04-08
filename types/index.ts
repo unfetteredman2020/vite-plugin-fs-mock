@@ -1,5 +1,3 @@
-export {}
-
 import Chokidar from 'chokidar';
 import { ViteDevServer} from 'vite';
 

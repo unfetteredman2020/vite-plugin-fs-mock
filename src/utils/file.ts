@@ -3,10 +3,10 @@ import type { FSWatcher } from 'chokidar'
 import { type Options, FSEvents } from '../../types/index'
 import { infoLog, errorLog } from './log'
 import glob from 'fast-glob'
-// import { readFile } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import { relativePath } from './pathUtils'
 import path from 'path'
-import { bundleRequire, JS_EXT_RE } from 'bundle-require'
+import { JS_EXT_RE } from 'bundle-require'
 const root = process.cwd()
 
 export class Main {
@@ -61,7 +61,7 @@ export class Main {
   }
   async makeList() {
     const dirs = await glob(`${this.options.path}/**/*${this.options.ext}`)
-    console.log('dirs :>> ', dirs)
+    // console.log('dirs :>> ', dirs)
     // for循环异步遍历获取文件内容
     for (let i = 0; i < dirs.length; i++) {
       const dir = dirs[i]
@@ -84,13 +84,11 @@ export class Main {
   async readFileAsync(p: string) {
     const parse = path.parse(p)
     const ext = parse.ext
-    console.log('ext :>> ', ext)
     if (ext !== `.${this.options.ext}`) {
       return null
     }
-    // const data = await readFile(p, { encoding: 'utf-8' })
-    const data = (await bundleRequire({ filepath: p, getOutputFile: this.getOutputFile })).mod.default
-    console.log('data :>> ', data)
+    const data = await readFile(p, { encoding: 'utf-8' })
+    // const data = (await bundleRequire({ filepath: p, getOutputFile: this.getOutputFile })).mod.default
     return JSON.stringify(data)
   }
 }

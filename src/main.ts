@@ -1,6 +1,7 @@
-import { Plugin, ResolvedConfig } from 'vite'
 import middleware from './middleware/index'
+import { Plugin, ResolvedConfig } from 'vite'
 import { Options, MockFileExtEnum  } from '../types/index'
+export * from '../types/index'
 
 export const viteMockPlugin = (options: Options = { path: 'mock',  ext: MockFileExtEnum.JSON }): Plugin => {
   return {
@@ -9,7 +10,6 @@ export const viteMockPlugin = (options: Options = { path: 'mock',  ext: MockFile
       // console.log('config :>> ', config);
     },
     async configureServer({ middlewares }) {
-      // server.middlewares.use(mockMiddleware(options))
       const mockMiddleware = await middleware(options)
       middlewares.use(mockMiddleware)
     }
