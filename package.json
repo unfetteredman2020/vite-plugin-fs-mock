@@ -1,36 +1,56 @@
 {
-  "name": "vite-mock-plugin",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vite-plugin-fs-mock",
+  "author": "unfetteredman",
+  "private": false,
+  "version": "0.0.2",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/counter.umd.cjs",
-  "module": "./dist/counter.js",
-  "types": "./index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "types": "./index.d.ts",
-    "import": "./dist/counter.js",
-    "require": "./dist/counter.umd.cjs"
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsup --config tsup.config.ts",
+    "rm": "rimraf ./node_modules",
     "server": "tsx watch --include ./src server.ts  ",
     "test": "vitest"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/node": "^22.14.0",
     "koa": "^2.16.0",
+    "rimraf": "^6.0.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-polyfill-node": "^0.13.0",
+    "tsup": "^8.4.0",
     "tsx": "^4.19.3",
     "typescript": "~5.7.3",
     "vite": "^6.1.1",
+    "vite-plugin-node-polyfills": "^0.23.0",
     "vitest": "^3.1.1"
   },
   "dependencies": {
+    "bundle-require": "^5.1.0",
     "chalk": "^5.4.1",
     "chokidar": "3.6.0",
     "fast-glob": "^3.3.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unfetteredman2020/vite-plugin-fs-mock"
+  },
+  "bugs": {
+    "url": "https://github.com/unfetteredman2020/vite-plugin-fs-mock/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "license": "MIT"
 }

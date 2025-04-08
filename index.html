@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    button {
+      border: none;
+      background-color: rgba(92, 89, 87, 0.871);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 15px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      margin: 10px 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button id="btn">get -> /home/index</button>
+    <button id="about">get -> /home/about/index</button>
+    <button id="unknow">get -> /unknow/inter</button>
+    <button id="ts">get -> /detail</button>
+  </header>
+  <script>
+    const btn = document.getElementById('btn');
+    const about = document.getElementById('about');
+    const unknow = document.getElementById('unknow');
+    const ts = document.getElementById('ts');
+    ts.addEventListener('click', async() => {
+      const res = await fetch('/detail').then(res => res.json());
+      console.log(res);
+    });
+
+    unknow.addEventListener('click', async() => {
+      const res = await fetch('/unknow/inter').then(res => res.json());
+      console.log(res);
+    });
+
+    btn.addEventListener('click', async() => {
+      const res = await fetch('/home/index').then(res => res.json())
+      console.log(res);
+    })
+
+    about.addEventListener('click', async() => {
+      const res = await fetch('/home/about/index').then(res => res.json())
+      console.log(res);
+    })
+  </script>
+  </script>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
